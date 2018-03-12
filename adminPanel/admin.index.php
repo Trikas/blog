@@ -26,7 +26,7 @@ $publication = $form->treatMet(publication);
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.css">
     <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>admin</title>
 </head>
     <body>

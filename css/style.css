@@ -1,25 +1,71 @@
-.form-control{
-    background: rgb(247, 246, 239);
-    width: 100% !important;
+/*  для заголовков всех мастей */
+@import url('https://fonts.googleapis.com/css?family=Scada:600');
+/* для всего остального текста */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400');
+body{
+    background: #f3f3f3;
+    font-family: 'Verdana', 'Arial','Roboto';
 
-   
+ 
 }
-.container-fluid{
-    margin-top: 0.5em;
+h1,
+h2,
+h3,
+h4{
+  color:#010101;
+ 
     
 }
+h2{
+    font-size: 50px;
+  
+}
+p{
+    color: #8f8c8c;
+    font-weight: 300;
+    font-size: 16px;
+}
+
 .wrapp{
-    width: 70%;
+    width: 90%;
+    padding-top: 2.5em;
     margin: auto;
 }
-.textarea{
+.sidenav{
+    background: white;
+    height: auto;
+    box-shadow: 0px 1px 1px 2px rgba(0, 0, 0, .2);
+    border: hidden;
+     margin-right: 7px;
+    padding: 0px, 0px, 4px, 0px;
+}
+.col-sm-9{
+    background: white;
+    box-shadow: 1px 2px 1px 2px rgba(0, 0, 0, .2);
+    border: hidden;
+    padding-right: 1em !important;
 
-    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .2);
+}
+.container{
+    width: 70%;
+}
+.image {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    border-radius: 1em;
+}
+a{
+    color: #010101;
+    
+    font-size: 14px !important;
+   
+    
+}
+.active a {
+    background-color: #1b5155 !important;
+}
 
-}
-.btn{
-     box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, .5);
-}
-.input-group{
-    width: 100%
-}
+
+
+
+
