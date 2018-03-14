@@ -25,6 +25,23 @@ define("DB_PASS","");
        
        }
 
+       function selectBd(){
+           $mysqli = new mysqli("127.0.0.1", DB_USER, DB_PASS, DB_NAME);
+            if (!$mysqli){
+                echo "Ошибка: Невозможно установить соединение с MySQL." . PHP_EOL;
+                echo "Код ошибки errno: " . mysqli_connect_errno() . PHP_EOL;
+                echo "Текст ошибки error: " . mysqli_connect_error() . PHP_EOL;
+                exit;
+            }
+            
+          
+           $rovs = $mysqli->query("SELECT `id`, `title`, `publication`, `date` FROM `blog` WHERE 1 ");
+           if(!$rovs){
+               echo "не удалось выполнить запрос";
+
+            }
+              return $rovs;  
+       }
 
 
 

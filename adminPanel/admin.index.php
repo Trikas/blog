@@ -41,6 +41,7 @@ $publication = $form->treatMet(publication);
             </div>    
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
+                    
                     <li><a href="admin.index.php?id=addedPub"><i class="far fa-edit"></i> Добавить статью</a></li>
                     <li><a href="admin.index.php?id=visits"><i class="far fa-address-book"></i> Посещения</a></li>
                     <li><a href="admin.index.php?id=sms"><i class="far fa-envelope"></i> Сообщения</a></li>  
@@ -48,7 +49,9 @@ $publication = $form->treatMet(publication);
         </div>  
     </nav>
      <!--Начало области соновного контента-->
+  
     <?php
+	
 
         routAdminPanel()
      
