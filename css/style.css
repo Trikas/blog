@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400');
 body{
     background: #f3f3f3;
-    font-family: 'Verdana', 'Arial','Roboto';
+  
 
  
 }
@@ -76,11 +76,29 @@ a{
     
 }
 img{
-    width: 100%;
-    
-    background-size: cover;
+ background-size: auto;
+  
+}
+.containerIMG{
+    height: 350px;
+}
+#enter{
+    background: #1b5155;
+    border-color: white;
 }
 
 
-
+#enter:hover{
+    background: #256d72;
+}
+.active a:hover {
+    background-color: #2b8086 !important;
+}
+#enter{
+    color: white;
+}
+.login{
+    width: 50%;
+    margin-top: 10em;
+}
 

@@ -3,18 +3,20 @@
 // <i class="fab fa-medapps"></i> для страницы с добавлением идей и рандомным счетсчиком охуенности идеи 
 // РАСКИДАТЬ ПО ФАЙЛАМ ЭТО ГОВНО!!!!!!!!!!!!
 // 
-require_once "../lib/funcBd.lib.php";
-require_once "../lib/formFiltr.lib.php";
-require_once "../lib/pageRout.lib.php";
-
-$form = new formFiltr();// фильтрация данных внесенных пользователем
-
-$title = $form->treatMet(title);
-$publication = $form->treatMet(publication);
-
-  if($title && $publication){   
-        addedBd($title, $publication);
+    session_start();
+    require_once "../lib/funcBd.lib.php";
+    require_once "../lib/pageRout.lib.php";
+  // говно для того что бы при обновлении страницы не летели копии данных с форм в бд
+    if ($_SERVER['REQUEST_METHOD']=='POST'){
+        $title = $_POST['title'];  
+        $publication = $_POST['publication'];
+        $hesh = $_POST['check'];
     }
+    if($_SESSION['check']!=$_POST['check']){
+        $_SESSION['check']=$_POST['check'];
+        addedBdPost($title, $publication);
+    }
+   
     
   
 ?>

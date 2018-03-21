@@ -24,25 +24,24 @@ function routAdminPanel(){
     
 }
 
-function routIndex(){
+function printPage(){
      if ($_SERVER['REQUEST_METHOD']=="GET")
         $id  = $_GET['id'];
     
     switch ($id) {
-        case 'top':
-            require_once "inc/topPost.inc.php";
+        case 'top': echo "Лучшее";
             break;
         
         case 'black':
-            require_once "inc/black.inc.php";
+            echo "Черная полоса";
             break;
 
         case 'white':
-            require_once "inc/white.inc.php";
+            echo "Белая полоса";
             break;
 
         default: 
-            require_once "inc/allPost.inc.php";
+            echo "Все подряд";
             break;
     }  
 

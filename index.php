@@ -2,7 +2,8 @@
 // подключение классов библиотек и создание обьектов
 require_once "lib/funcBd.lib.php";
 require_once "lib/pageRout.lib.php";
-
+if ($_SERVER['REQUEST_METHOD']=='GET'){
+    $id = $_GET['id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +16,7 @@ require_once "lib/pageRout.lib.php";
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    
 </head>
 <body>
 <div class="wrapp">
@@ -34,38 +36,54 @@ require_once "lib/pageRout.lib.php";
                 <li><a href="index.php?id=black">Черная полоса</a></li>
     
       
-                </ul><br>
+                </ul><hr>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search Blog..">
+                    <input type="text" class="form-control" placeholder="Поиск">
                     <span class="input-group-btn">
                     <button class="btn btn-default" type="button">
                     <i class="fas fa-search"></i>
                     </button>
                     </span>
                 </div><br>
-              
+                  
+                <div class="btn-group">
+                    <a href="inc/login.inc.php">Войти</a>
                 </div>
+              
+    </div>
+               
         <!--начало области добавления из базы данных-->
       
         <div class="container-fluid postHead">
         <div class="printPost">
-            <div class="text-center"><p style="text-transform:uppercase; padding: 10px; color: #000000;">Все подряд</p></div> 
+            <div class="text-center"><p style="text-transform:uppercase; padding: 10px; color: black;"><?= printPage(); ?></p></div> 
         </div>    
 
-                    <?php 
-                    $res =  selectBd();
-                    while($rovs = $res->fetch_assoc()){
-
+                    <?php
+                    switch ($id) {
+                        case 'all':
+                            $sql = .
+                            break;
+                        
+                        default:
+                            # code...
+                            break;
+                    }
+                    
+                    if ($_GET['id']=='all'){
+                        $res =  selectBdPost($sql);
+                        while($rovs = $res->fetch_assoc()){
+                    } 
+                   
                     ?>
 
             <div class="container-fluid printPost">
-                <h2 ><!-- тут название статьи --> <?php echo $rovs['title']; ?></h2>
                 <div class="container-fluid"> 
-                    
+                    <h2 ><!-- тут название статьи --> <?php echo $rovs['title']; ?></h2>
                     <h5></span><i class="far fa-calendar"></i> <?php echo $rovs['date']; ?></h5>
-                   <p class="teg"><span class="label label-danger">Food</span><span class="label label-primary">Ipsum</span></p>
+                   <p class="teg"><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></p>
                     <h4> <span style="color:#1b5155;"><!-- тут ник пользователя--> <?php  ?></span></h4>
-                   <div class="container"><img src="img/intro.jpg" class="img-thumbnail" alt="Cinque Terrer"></div> 
+                   <div class="containerIMG" style="background: url(img/intro.jpg);"></div> 
                     
                     <br>
                     <p><?php echo $rovs['publication'];?></p>
@@ -73,14 +91,18 @@ require_once "lib/pageRout.lib.php";
                     <!-- а вот тут какое нибудь аудио -->
                     <!-- добавить кнопку понравилась поднятие статьи в рейтинге статей -->
                     <!-- захуярить коментирование статьи-->
+                    <!--Добавить пагинацию-->
                     <a href="">Читать далее...</a>
                 </div>    
                     <br><br>
                 </div><br>
-            <?}?>
+            <?} ?>
         </div>
 
            <!--конец области добавления из базы данных-->
 </div>  
 </body>
 </html>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
