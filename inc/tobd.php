@@ -20,15 +20,15 @@
 //         $sql = $_POST['query'];
 //         echo selectBdPost($sql);
 //    }
-  $res = selectBdPost($_POST['param']);
-  $jsonArr = [];
-  $x = 0;
+//   $res = selectBdPost($_POST['param']);
+//   $jsonArr = [];
+//   $x = 0;
 
-  while($rovs = $res->fetch_assoc()){
-      $jsonArr[$x]  =  $rovs;
-      $x++;
-  }
-      print_r(json_encode($jsonArr));
+//   while($rovs = $res->fetch_assoc()){
+//       $jsonArr[$x]  =  $rovs;
+//       $x++;
+//   }
+//       print_r(json_encode($jsonArr));
  ?>      
               
 

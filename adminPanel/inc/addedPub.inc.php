@@ -22,14 +22,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
-
+    line = "";
+    $("#white").click(function(){
+        line = "white";
+        // alert(line);
+    });
     $("#subm").click(function(){
        $.post(
             "/adminPanel/tobd.php",
            {
             title: $("#title").val(),
             publication: $("#publ").val(),
-            check: $("#chek").val()
+            check: line
            },
            onAjaxSuccess
            
@@ -38,7 +42,7 @@
     function onAjaxSuccess(data)
     {
   // Здесь мы получаем данные, отправленные сервером и выводим их на экран.
-       
+       alert(data);
         if (data==""){
             alert("ЗАполните все поля");
         }

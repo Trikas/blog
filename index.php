@@ -97,28 +97,19 @@ require_once "lib/pageRout.lib.php";
     
     printPos = "";
     $.post(
-        "inc/tobd.php",
-        {
-            param: "SELECT `id`, `title`, `publication`, `date` FROM `blog` ORDER BY id DESC"
-        },
-        success
-    );
-    $.post(
         "inc/printPost.php",
+        {
+            param: "SELECT `id`, `title`, `publication`, `date`, `line` FROM `blog` ORDER BY id DESC"
+        },
+        
         printPost
     );
     function printPost(data){
       printPos =  $.parseJSON(data)
-     $("#wrapp").append(printPos[1]);
-       
-        }
-    function success(responce){
-        
-        var json = $.parseJSON(responce);
-        var x = json[0]['title'];
+        $("#wrapp").append(printPos[1]);
         var listMax = 12; 
         var listMin = 2;
-        var arr = [];
+        alert(data);
         // $("#wrapp").append(value);
         
             $(window).scroll(function() {

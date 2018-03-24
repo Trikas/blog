@@ -2,11 +2,11 @@
 require_once "../lib/funcBd.lib.php";
 $list = [];
 $x = 0;
-$sql = "SELECT `id`, `title`, `publication`, `date` FROM `blog` ORDER BY id DESC";
-  $res =  selectBdPost($sql);
+
+ $res = selectBdPost($_POST['param']);
    while($rovs = $res->fetch_assoc()){
      $x++;
-     $list[$x]  = 
+     $list[$x] = 
      
     <<<"EOT"
  
