@@ -2,7 +2,8 @@
 define("DB_NAME","adminBD");
 define("DB_USER","root");
 define("DB_PASS","");
-
+$x =  $_POST['query'];
+selectBdPost($x);
        function addedBdPost($title, $publication){
         $mysqli = new mysqli("127.0.0.1", DB_USER, DB_PASS, DB_NAME);
         if (!$mysqli){
@@ -26,6 +27,7 @@ define("DB_PASS","");
        }
 
        function selectBdPost($sql){
+           
            $mysqli = new mysqli("127.0.0.1", DB_USER, DB_PASS, DB_NAME);
             if (!$mysqli){
                 echo "Ошибка: Невозможно установить соединение с MySQL." . PHP_EOL;
@@ -33,9 +35,8 @@ define("DB_PASS","");
                 echo "Текст ошибки error: " . mysqli_connect_error() . PHP_EOL;
                 exit;
             }
-            
+           $rovs = $mysqli->query('SELECT `id`, `title`, `publication`, `date` FROM `blog` ORDER BY id DESC');
           
-           $rovs = $mysqli->query("SELECT `id`, `title`, `publication`, `date` FROM `blog` ORDER BY id DESC ");
            if(!$rovs){
                echo "не удалось выполнить запрос";
 

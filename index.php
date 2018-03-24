@@ -2,8 +2,7 @@
 // подключение классов библиотек и создание обьектов
 require_once "lib/funcBd.lib.php";
 require_once "lib/pageRout.lib.php";
-if ($_SERVER['REQUEST_METHOD']=='GET'){
-    $id = $_GET['id'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,10 +29,10 @@ if ($_SERVER['REQUEST_METHOD']=='GET'){
                             </div>
                     </div><hr><br>
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="index.php?id=all">Все подряд</a></li>
-                <li><a href="index.php?id=top">Лучшее</a></li>
-                <li><a href="index.php?id=white">Белая полоса</a></li>
-                <li><a href="index.php?id=black">Черная полоса</a></li>
+                <li class="active"><a href="index.php" id="all">Все подряд</a></li>
+                <li><a href="index.php?id=top" id="top">Лучшее</a></li>
+                <li><a href="index.php?id=white" id="white">Белая полоса</a></li>
+                <li><a href="index.php?id=black" id="top">Черная полоса</a></li>
     
       
                 </ul><hr>
@@ -46,10 +45,10 @@ if ($_SERVER['REQUEST_METHOD']=='GET'){
                     </span>
                 </div><br>
                   
-                <div class="btn-group">
+                <!-- <div class="btn-group">
                     <a href="inc/login.inc.php">Войти</a>
                 </div>
-              
+               -->
     </div>
                
         <!--начало области добавления из базы данных-->
@@ -60,49 +59,88 @@ if ($_SERVER['REQUEST_METHOD']=='GET'){
         </div>    
 
                     <?php
-                    switch ($id) {
-                        case 'all':
-                            $sql = .
-                            break;
+                    // if ($_SERVER['REQUEST_METHOD']=='GET'){
+                    //     $id = $_GET['id'];
+                    // switch ($id) {
+                    //     case 'all':
+                    //         $sql = .
+                    //         break;
                         
-                        default:
-                            # code...
-                            break;
-                    }
+                    //     default:
+                    //         # code...
+                    //         break;
+                    // }
                     
-                    if ($_GET['id']=='all'){
-                        $res =  selectBdPost($sql);
-                        while($rovs = $res->fetch_assoc()){
-                    } 
+                
+                    //     while($rovs = $rovs->fetch_assoc()){
+                    
                    
-                    ?>
+                    // ?>
+        <div id = "wrapp">
 
-            <div class="container-fluid printPost">
-                <div class="container-fluid"> 
-                    <h2 ><!-- тут название статьи --> <?php echo $rovs['title']; ?></h2>
-                    <h5></span><i class="far fa-calendar"></i> <?php echo $rovs['date']; ?></h5>
-                   <p class="teg"><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></p>
-                    <h4> <span style="color:#1b5155;"><!-- тут ник пользователя--> <?php  ?></span></h4>
-                   <div class="containerIMG" style="background: url(img/intro.jpg);"></div> 
-                    
-                    <br>
-                    <p><?php echo $rovs['publication'];?></p>
-                    
-                    <!-- а вот тут какое нибудь аудио -->
-                    <!-- добавить кнопку понравилась поднятие статьи в рейтинге статей -->
-                    <!-- захуярить коментирование статьи-->
-                    <!--Добавить пагинацию-->
-                    <a href="">Читать далее...</a>
-                </div>    
-                    <br><br>
-                </div><br>
-            <?} ?>
-        </div>
-
-           <!--конец области добавления из базы данных-->
+        </div>          <!--конец области добавления из базы данных-->
 </div>  
 </body>
 </html>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+  <script>
+// $(window).scroll(function() {
+//    var windowSckroll = $(window).scrollTop();
+//    var windowHeight = $(window).height();
+//    var documentHeight = $(document).height();
+//    if ((windowSckroll + windowHeight)==documentHeight){
+//        $("#wrapp").append('<div class="conatiner-fluid printPost"><h1>1111</h1></div>');
+//    }
+//    console.log(windowSckroll + " "+ windowHeight + " "+ documentHeight);
+// }); ГОВНО ЕБАТЬ КОПАТЬ НО РАБОТАЕТ ЕБА БОБА ДОДЕЛАТЬ!!!!
+    
+    printPos = "";
+    $.post(
+        "inc/tobd.php",
+        {
+            param: "SELECT `id`, `title`, `publication`, `date` FROM `blog` ORDER BY id DESC"
+        },
+        success
+    );
+    $.post(
+        "inc/printPost.php",
+        printPost
+    );
+    function printPost(data){
+      printPos =  $.parseJSON(data)
+     $("#wrapp").append(printPos[1]);
+       
+        }
+    function success(responce){
+        
+        var json = $.parseJSON(responce);
+        var x = json[0]['title'];
+        var listMax = 12; 
+        var listMin = 2;
+        var arr = [];
+        // $("#wrapp").append(value);
+        
+            $(window).scroll(function() {
+                var windowSckroll = $(window).scrollTop();
+                var windowHeight = $(window).height();
+                var documentHeight = $(document).height();
+                if ((windowSckroll + windowHeight)==documentHeight){
+                    $.each(printPos, function(index,value){
+                       
+                        if (index < listMax && index >= listMin){
+                             console.log(index);
+                            $("#wrapp").append(value);
+                      }
+                      });
+                      listMax+=10;
+                      listMin+=10;
+                      
+                  }
+                
+            });
+        
+      
+    }
+  </script>
+  <div></div>

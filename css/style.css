@@ -1,5 +1,4 @@
-/*  для заголовков всех мастей */
-@import url('https://fonts.googleapis.com/css?family=Scada:600');
+
 /* для всего остального текста */
 @import url('https://fonts.googleapis.com/css?family=Roboto:400');
 body{
@@ -27,8 +26,7 @@ p{
 }
 
 .wrapp{
-    width: 90%;
-    
+    width: 90%; 
     margin: auto;
 }
 .sidenav{
@@ -102,3 +100,6 @@ img{
     margin-top: 10em;
 }
 
+.container-fluid{
+    margin-bottom: 1em;
+}
